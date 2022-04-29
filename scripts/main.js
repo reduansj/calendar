@@ -106,5 +106,7 @@ window.onload = function () {
     }
   }
 
-  function writeDays(month) {}
+  function writeDays(month) {
+
+  }
 };

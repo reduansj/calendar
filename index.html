@@ -5,26 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calendar</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles/style.css" />
-    <script src="scripts/main.js" defer></script>
   </head>
   <body>
     <section class="calendar">
       <header class="calendar__header">
-        <button class="calendar__header__prev" id="calendarHeadPrev">
-          &#11164;
-        </button>
-        <p class="calendar__header__month" id="calendarHeadMonth"></p>
-        <p class="calendar__header__year" id="calendarHeadYear"></p>
-        <button class="calendar__header__next" id="calendarHeadNext">
-          &#11166;
-        </button>
+        <span class="calendar__header__prev">&#11164;</span>
+        <p class="calendar__header__month">JANUARY</p>
+        <p class="calendar__header__year">2022</p>
+        <span class="calendar__header__next">&#11166;</span>
       </header>
       <section class="calendar__week">
         <div class="calendar__week__item">Mon</div>
@@ -35,7 +23,7 @@
         <div class="calendar__week__item">Sat</div>
         <div class="calendar__week__item">Sun</div>
       </section>
-      <section class="calendar__days" id="calendarDays"></section>
+      <section class="calendar__days"></section>
     </section>
   </body>
 </html>
