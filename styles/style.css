@@ -1,0 +1,38 @@
+/*CALENDAR GENERAL STYLES*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: aqua;
+  font-family: "Roboto", sans-serif;
+}
+
+/*CALENDAR GENERAL CONTAINER*/
+.calendar {
+  width: 60%;
+  height: 60%;
+  font-size: 2rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+/*CALENDAR HEADER*/
+.calendar__header {
+  display: flex;
+  justify-content: center;
+}
+.calendar__header > * {
+  margin-left: 2rem;
+}
+/*CALENDAR WEEKS MONDAY,THURSDAY..*/
+.calendar__week {
+  display: flex;
+  justify-content: space-around;
+}
