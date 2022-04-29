@@ -45,21 +45,7 @@ window.onload = function () {
   nextBtn.addEventListener("click", nextDate);
   prevBtn.addEventListener("click", prevDate);
 
-  function isLeap() {
-    return (
-      (currentYear % 4 === 0 && currentYear % 100 !== 0) ||
-      currentYear % 400 === 0
-    );
-  }
-  function dayStart() {
-    let start = new Date(currentYear, currentMonth, 1);
-    if (start.getDay() - 1 === -1) {
-      return 6;
-    } else {
-      return start.getDay() - 1;
-    }
-  }
-
+  // Next month and previous month functions
   function nextDate() {
     if (currentMonth !== 11) {
       currentMonth++;
@@ -78,12 +64,20 @@ window.onload = function () {
     }
     setNewDate();
   }
-
+  //Erase the days in the container to show new one one next or on previous
+  function eraseContainer() {
+    calendarDaysCont.textContent = "";
+  }
+  //Set the new date on the container and write days
   function setNewDate() {
     calendarMonthCont.textContent = arrayMonths[currentMonth];
     calendarYearCont.textContent = currentYear.toString();
+    eraseContainer();
+    writeDays(currentMonth);
   }
-  function getTotalDays(currentMonth) {
+
+  //Get total days depending on the month
+  function getTotalDays() {
     if (
       currentMonth === 0 ||
       currentMonth === 2 ||
@@ -105,6 +99,34 @@ window.onload = function () {
       return isLeap() ? 29 : 28;
     }
   }
-
-  function writeDays(month) {}
+  //Function to write all the days
+  function writeDays(month) {
+    console.log(getTotalDays(month));
+    for (let i = dayStart(); i > 0; i--) {
+      calendarDaysCont.innerHTML += `  <div class="calendar__days__item" style = "color : gray;">${
+        getTotalDays(currentMonth - 1) - (i - 1)
+      }</div>`;
+    }
+    for (let index = 0; index < getTotalDays(month); index++) {
+      calendarDaysCont.innerHTML += `  <div class="calendar__days__item">${
+        index + 1
+      }</div>`;
+    }
+  }
+  //Check if is it bisiesto
+  function isLeap() {
+    return (
+      (currentYear % 4 === 0 && currentYear % 100 !== 0) ||
+      currentYear % 400 === 0
+    );
+  }
+  function dayStart() {
+    let start = new Date(currentYear, currentMonth, 1);
+    if (start.getDay() - 1 === -1) {
+      return 6;
+    } else {
+      return start.getDay() - 1;
+    }
+  }
+  writeDays(currentMonth);
 };

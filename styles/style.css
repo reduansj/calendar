@@ -36,3 +36,11 @@ body {
   display: flex;
   justify-content: space-around;
 }
+
+.calendar__days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.calendar__days > * {
+  text-align: center;
+}
