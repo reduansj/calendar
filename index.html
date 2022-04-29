@@ -12,14 +12,19 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles/style.css" />
+    <script src="scripts/main.js" defer></script>
   </head>
   <body>
     <section class="calendar">
       <header class="calendar__header">
-        <button class="calendar__header__prev">&#11164;</button>
-        <p class="calendar__header__month">JANUARY</p>
-        <p class="calendar__header__year">2022</p>
-        <button class="calendar__header__next">&#11166;</button>
+        <button class="calendar__header__prev" id="calendarHeadPrev">
+          &#11164;
+        </button>
+        <p class="calendar__header__month" id="calendarHeadMonth"></p>
+        <p class="calendar__header__year" id="calendarHeadYear"></p>
+        <button class="calendar__header__next" id="calendarHeadNext">
+          &#11166;
+        </button>
       </header>
       <section class="calendar__week">
         <div class="calendar__week__item">Mon</div>
@@ -30,7 +35,7 @@
         <div class="calendar__week__item">Sat</div>
         <div class="calendar__week__item">Sun</div>
       </section>
-      <section class="calendar__days"></section>
+      <section class="calendar__days" id="calendarDays"></section>
     </section>
   </body>
 </html>
