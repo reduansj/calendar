@@ -15,12 +15,16 @@
           class="calendar__prev header__btn"
           id="prev"
           onclick="prevDate()"
-        >prev</button>
+        >
+          prev
+        </button>
         <div class="calendar__header__date">
-        <section class="calendar__header__date-month" id="calendarMonth">
-          APRIL
-        </section>
-        <section class="calendar__header__date-year" id="calendarYear">2022</section>
+          <section class="calendar__header__date-month" id="calendarMonth">
+            APRIL
+          </section>
+          <section class="calendar__header__date-year" id="calendarYear">
+            2022
+          </section>
         </div>
         <button
           class="calendar__next header__btn"
@@ -39,7 +43,24 @@
         <section class="calendar__week__item">Sat</section>
         <section class="calendar__week__item">Sun</section>
       </section>
-      <section class="calendar__days calendar__days-style" id="calendarDays"></section>
+      <section
+        class="calendar__days calendar__days-style"
+        id="calendarDays"
+      ></section>
     </section>
+    <!--!MODAL TEST HTML -->
+    <div class="modal__container modal__container-hide" id="modalContainer">
+      <div class="modal__content">
+        <button id="closeBtn" class="modal__closeBtn">X</button>
+        <h1>TEST MODAL</h1>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam
+          necessitatibus amet aut accusantium, cupiditate voluptates minima
+          dolores incidunt soluta velit.
+        </p>
+      </div>
+    </div>
+    <!-- !MODAL BTN SHOW MODAL TEST -->
+    <button id="showModal">Show modal</button>
   </body>
 </html>

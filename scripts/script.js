@@ -108,3 +108,33 @@ function getStartDay() {
     calendarDays.appendChild(day);
   }
 }
+
+/*SHOW MODAL*/
+const modalContainer = document.getElementById("modalContainer");
+//get button to show modal
+const showModalBtn = document.getElementById("showModal");
+showModalBtn.addEventListener("click", () => {
+  modalContainer.classList.toggle("modal__container-hide");
+  modalContainer.classList.toggle("modal__container-show");
+});
+
+const closeBtn = document.getElementById("closeBtn");
+closeBtn.addEventListener("click", closeModal);
+modalContainer.addEventListener("click", closeModal);
+document.addEventListener("keyup", escCloseModal);
+function escCloseModal(e) {
+  if (
+    modalContainer.classList.contains("modal__container-show") &&
+    e.key === "Escape"
+  ) {
+    modalContainer.classList.toggle("modal__container-hide");
+    modalContainer.classList.toggle("modal__container-show");
+  }
+}
+function closeModal(e) {
+  e.stopPropagation();
+  if (e.target.className !== "modal__content") {
+    modalContainer.classList.toggle("modal__container-hide");
+    modalContainer.classList.toggle("modal__container-show");
+  }
+}

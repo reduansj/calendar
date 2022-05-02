@@ -26,16 +26,15 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0  10%;
+  margin: 0 10%;
   margin-bottom: 5rem;
   margin-top: 2rem;
 }
 
-.calendar__header__date   {
+.calendar__header__date {
   display: flex;
   flex-direction: column;
 }
-
 
 /* !CALENDAR WEEKS*/
 
@@ -48,10 +47,9 @@ body {
   text-align: center;
 }
 /* !BTN PREV AND NEXT*/
-.header__btn{
- height: 2rem;
- width: 5rem;
-
+.header__btn {
+  height: 2rem;
+  width: 5rem;
 }
 /* !CALENDAR DAYS*/
 
@@ -59,7 +57,7 @@ body {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 }
-.calendar__days-style li{
+.calendar__days-style li {
   margin-top: 2vh;
   height: 3.5rem;
   text-align: ;
@@ -68,9 +66,41 @@ body {
 .calendar__days li {
   text-align: center;
   list-style: none;
-} 
+}
 
 .calendar__day__item-bloqued {
   color: rgba(179, 179, 179, 0.795);
   text-align: center;
+}
+
+/*!MODAL TEST STYLES*/
+.modal__container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.603);
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+.modal__container-hide {
+  display: none;
+}
+.modal__container-show {
+  display: flex;
+}
+.modal__content {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  background-color: red;
+  text-align: center;
+}
+
+.modal__closeBtn {
+  position: absolute;
+  right: 0;
+  font-size: 2rem;
+  cursor: pointer;
 }
