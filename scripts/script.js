@@ -132,9 +132,53 @@ function escCloseModal(e) {
   }
 }
 function closeModal(e) {
-  e.stopPropagation();
-  if (e.target.className !== "modal__content") {
+  if (e.target === this) {
     modalContainer.classList.toggle("modal__container-hide");
     modalContainer.classList.toggle("modal__container-show");
   }
 }
+
+//Save in local storage and array of objects
+
+class CalendarEvent {
+  constructor(title, initialDate, endDate, reminder, description, eventType) {
+    this.title = title;
+    this.initialDate = initialDate;
+    this.endDate = endDate;
+    this.reminder = reminder;
+    this.description = description;
+    this.eventType = eventType;
+  }
+}
+
+const saveBtn = document.getElementById("saveContent");
+saveBtn.addEventListener("click", () => {
+  const event = new CalendarEvent(
+    "Entregar Calendar",
+    "02/03/2022 18:00h",
+    "06/03/2022 17:00h",
+    5,
+    "Este dia habra que entregar este proyecto",
+    "Study"
+  );
+  const event2 = new CalendarEvent(
+    "Entregar Wordle",
+    "01/05/2022 16:00h",
+    "10/07/2022 19:00h",
+    10,
+    "Este dia habra que entregar el jueguito para joselito",
+    "Study"
+  );
+
+  const eventsArray = [];
+  if (localStorage.length > 0) {
+    const arrObj = JSON.parse(localStorage.getItem("event"));
+    for (const obj of arrObj) {
+      console.log(obj);
+      eventsArray.push(obj);
+    }
+  }
+  eventsArray.push(event, event2);
+  localStorage.setItem("event", [JSON.stringify(eventsArray)]);
+  console.log(eventsArray);
+});
