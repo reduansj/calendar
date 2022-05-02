@@ -1,46 +1,76 @@
-/*CALENDAR GENERAL STYLES*/
+/*!RESET*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+/*!GENERAL STYLES*/
 body {
+  width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: aqua;
-  font-family: "Roboto", sans-serif;
 }
 
-/*CALENDAR GENERAL CONTAINER*/
+/*!CALENDAR COINTAINER*/
 .calendar {
-  width: 60%;
-  height: 60%;
-  font-size: 2rem;
-  background-color: white;
+  width: 70%;
+  height: 70%;
+  background-color: aqua;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
+/* !CALENDAR HEADER*/
+.calendar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0  10%;
+  margin-bottom: 5rem;
+  margin-top: 2rem;
+}
+
+.calendar__header__date   {
   display: flex;
   flex-direction: column;
 }
 
-/*CALENDAR HEADER*/
-.calendar__header {
-  display: flex;
-  justify-content: center;
+
+/* !CALENDAR WEEKS*/
+
+.calendar__weeks {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
 }
-.calendar__header > * {
-  margin-left: 2rem;
+
+.calendar__week__item {
+  text-align: center;
 }
-/*CALENDAR WEEKS MONDAY,THURSDAY..*/
-.calendar__week {
-  display: flex;
-  justify-content: space-around;
+/* !BTN PREV AND NEXT*/
+.header__btn{
+ height: 2rem;
+ width: 5rem;
+
 }
+/* !CALENDAR DAYS*/
 
 .calendar__days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 }
-.calendar__days > * {
+.calendar__days-style li{
+  margin-top: 2vh;
+  height: 3.5rem;
+  text-align: ;
+  border: 1px solid black;
+}
+.calendar__days li {
+  text-align: center;
+  list-style: none;
+} 
+
+.calendar__day__item-bloqued {
+  color: rgba(179, 179, 179, 0.795);
   text-align: center;
 }

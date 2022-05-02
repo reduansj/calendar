@@ -4,38 +4,42 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calendar</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
+    <title>Document</title>
+    <script src="scripts/script.js" defer></script>
     <link rel="stylesheet" href="styles/style.css" />
-    <script src="scripts/main.js" defer></script>
   </head>
   <body>
-    <section class="calendar">
+    <section id="calendar" class="calendar">
       <header class="calendar__header">
-        <button class="calendar__header__prev" id="calendarHeadPrev">
-          &#11164;
-        </button>
-        <p class="calendar__header__month" id="calendarHeadMonth"></p>
-        <p class="calendar__header__year" id="calendarHeadYear"></p>
-        <button class="calendar__header__next" id="calendarHeadNext">
-          &#11166;
+        <button
+          class="calendar__prev header__btn"
+          id="prev"
+          onclick="prevDate()"
+        >prev</button>
+        <div class="calendar__header__date">
+        <section class="calendar__header__date-month" id="calendarMonth">
+          APRIL
+        </section>
+        <section class="calendar__header__date-year" id="calendarYear">2022</section>
+        </div>
+        <button
+          class="calendar__next header__btn"
+          id="next"
+          onclick="nextDate()"
+        >
+          next
         </button>
       </header>
-      <section class="calendar__week">
-        <div class="calendar__week__item">Mon</div>
-        <div class="calendar__week__item">Tue</div>
-        <div class="calendar__week__item">Wed</div>
-        <div class="calendar__week__item">Thu</div>
-        <div class="calendar__week__item">Fri</div>
-        <div class="calendar__week__item">Sat</div>
-        <div class="calendar__week__item">Sun</div>
+      <section class="calendar__weeks">
+        <section class="calendar__week__item">Mon</section>
+        <section class="calendar__week__item">Tue</section>
+        <section class="calendar__week__item">Wed</section>
+        <section class="calendar__week__item">Thu</section>
+        <section class="calendar__week__item">Fri</section>
+        <section class="calendar__week__item">Sat</section>
+        <section class="calendar__week__item">Sun</section>
       </section>
-      <section class="calendar__days" id="calendarDays"></section>
+      <section class="calendar__days calendar__days-style" id="calendarDays"></section>
     </section>
   </body>
 </html>
