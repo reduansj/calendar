@@ -15,6 +15,7 @@ body {
 
 /*!CALENDAR COINTAINER*/
 .calendar {
+  display: none;
   width: 70%;
   height: 70%;
   background-color: aqua;
@@ -23,7 +24,7 @@ body {
 
 /* !CALENDAR HEADER*/
 .calendar__header {
-  display: flex;
+  display: none;
   justify-content: space-between;
   align-items: center;
   margin: 0  10%;
@@ -62,8 +63,7 @@ body {
 .calendar__days-style li{
   margin-top: 2vh;
   height: 3.5rem;
-  text-align: ;
-  border: 1px solid black;
+  
 }
 .calendar__days li {
   text-align: center;

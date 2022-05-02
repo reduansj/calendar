@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="scripts/script.js" defer></script>
+    <script src="scripts/modal.js" ></script>
     <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/modals.css" />
   </head>
   <body>
     <section id="calendar" class="calendar">
@@ -15,12 +17,16 @@
           class="calendar__prev header__btn"
           id="prev"
           onclick="prevDate()"
-        >prev</button>
+        >
+          prev
+        </button>
         <div class="calendar__header__date">
-        <section class="calendar__header__date-month" id="calendarMonth">
-          APRIL
-        </section>
-        <section class="calendar__header__date-year" id="calendarYear">2022</section>
+          <section class="calendar__header__date-month" id="calendarMonth">
+            APRIL
+          </section>
+          <section class="calendar__header__date-year" id="calendarYear">
+            2022
+          </section>
         </div>
         <button
           class="calendar__next header__btn"
@@ -30,7 +36,7 @@
           next
         </button>
       </header>
-      <section class="calendar__weeks">
+      <section class="calendar__weeks" >
         <section class="calendar__week__item">Mon</section>
         <section class="calendar__week__item">Tue</section>
         <section class="calendar__week__item">Wed</section>
@@ -39,7 +45,61 @@
         <section class="calendar__week__item">Sat</section>
         <section class="calendar__week__item">Sun</section>
       </section>
-      <section class="calendar__days calendar__days-style" id="calendarDays"></section>
+      <section
+        class="calendar__days calendar__days-style"
+        id="calendarDays"
+      ></section>
     </section>
+    <form>
+      <fieldset class="form__header">
+        <label for="title">Add title</label>
+        <input
+          type="text"
+          name="event-title"
+          class="form__header-title"
+          id="form__header-title"
+        />
+
+        <select
+          id="form__header-event-type"
+          class="form__header-event-type"
+          name="cars"
+        >
+          <option value="meeting">Meeting</option>
+          <option value="personal">Personal</option>
+          <option value="study">Study</option>
+          <option value="birthday">Birthday</option>
+        </select>
+        <input
+          type="date"
+          name="event-date"
+          class="form__header-date"
+          id="form__header-date"
+        />
+        <label for="end-date">End event</label>
+        <input
+          type="checkbox"
+          class="form__header-checkbox-date"
+          id="form__header-checkbox-date"
+          name="end-date"
+          value="date"
+        />
+        <input
+          type="date"
+          name="end-date"
+          class="form__header-date"
+          id="form__header-end-date"
+        />
+        <h3>Description</h3>
+        <textarea
+          name="description"
+          id="form__header-textarea"
+          cols="30"
+          rows="10"
+        ></textarea>
+        <button class="form__header-btn-cancel">Cancel</button>
+        <button class="form__header-btn-create" id="form__header-btn-create">Create</button>
+      </fieldset>
+    </form>
   </body>
 </html>
