@@ -4,26 +4,42 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calendar</title>
+    <title>Document</title>
+    <script src="scripts/script.js" defer></script>
+    <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body>
-    <section class="calendar">
+    <section id="calendar" class="calendar">
       <header class="calendar__header">
-        <span class="calendar__header__prev">&#11164;</span>
-        <p class="calendar__header__month">JANUARY</p>
-        <p class="calendar__header__year">2022</p>
-        <span class="calendar__header__next">&#11166;</span>
+        <button
+          class="calendar__next header__btn"
+          id="prev"
+          onclick="prevDate()"
+        >
+          prev
+        </button>
+        <section class="calendar__header__month" id="calendarMonth">
+          APRIL
+        </section>
+        <section class="calendar__header__year" id="calendarYear">2022</section>
+        <button
+          class="calendar__prev header__btn"
+          id="next"
+          onclick="nextDate()"
+        >
+          next
+        </button>
       </header>
-      <section class="calendar__week">
-        <div class="calendar__week__item">Mon</div>
-        <div class="calendar__week__item">Tue</div>
-        <div class="calendar__week__item">Wed</div>
-        <div class="calendar__week__item">Thu</div>
-        <div class="calendar__week__item">Fri</div>
-        <div class="calendar__week__item">Sat</div>
-        <div class="calendar__week__item">Sun</div>
+      <section class="calendar__weeks">
+        <section class="calendar__week__item">Mon</section>
+        <section class="calendar__week__item">Tue</section>
+        <section class="calendar__week__item">Wed</section>
+        <section class="calendar__week__item">Thu</section>
+        <section class="calendar__week__item">Fri</section>
+        <section class="calendar__week__item">Sat</section>
+        <section class="calendar__week__item">Sun</section>
       </section>
-      <section class="calendar__days"></section>
+      <section class="calendar__days" id="calendarDays"></section>
     </section>
   </body>
 </html>
