@@ -183,37 +183,29 @@ saveBtn.addEventListener("click", () => {
   localStorage.setItem("event", [JSON.stringify(eventsArray)]);
   console.log(eventsArray);
 });
-//event data
-let eventData = {
-  key: "",
-  title: "",
-  date: [],
-  endDate: [],
-  remainder: "",
-  description: "",
-  type: "",
-};
 
 //modal verification
+//Save btn
 const createEvent = document.getElementById("form__header-btn-create");
-
+//Takes all inputs in form whit class input
 const formInputs = document.querySelectorAll(".input");
-
+//Object  for inpu verification
 const inputStatus = {
   title: false,
   time: false,
 };
+//Regexp  for the inputs
 const checkInputexpression = {
   title: /^(?=.{1,60}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9]+(?<![_.])$/g,
   time: /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d(?:\.\d+)?Z?/g,
 };
-
+//Function iterates all inputs when it changes
 formInputs.forEach((input) => {
   input.addEventListener("change", (e) => {
     updateInputs(e);
   });
 });
-
+//When all  inputs are true  crate  the object in local storage & the day.
 createEvent.addEventListener("click", (event) => {
   event.preventDefault();
   if (Object.values(inputStatus).every((item) => item === true)) {
@@ -222,7 +214,7 @@ createEvent.addEventListener("click", (event) => {
     console.log(Object.values(inputStatus));
   }
 });
-
+//Check the input value if is correct changes the  Object "InputStatus"
 function updateInputs(e) {
   const currentInput = e.target;
 

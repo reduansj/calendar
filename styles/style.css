@@ -15,7 +15,6 @@ body {
 
 /*!CALENDAR COINTAINER*/
 .calendar {
-  display: none;
   width: 70%;
   height: 70%;
   background-color: aqua;
@@ -24,7 +23,7 @@ body {
 
 /* !CALENDAR HEADER*/
 .calendar__header {
-  display: none;
+  display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0 10%;
