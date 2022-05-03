@@ -127,7 +127,7 @@ showModalBtn.addEventListener("click", () => {
 //HIDE MODAL
 //X button
 const cancelBtn = document.getElementById("form_header_cancel");
-const closeBtn = document.getElementById("closeBtn");
+const closeBtn = document.getElementById("form_header_cancel");
 cancelBtn.addEventListener("click", closeModal);
 closeBtn.addEventListener("click", closeModal);
 //Container general close
