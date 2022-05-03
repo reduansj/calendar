@@ -110,20 +110,33 @@ function getStartDay() {
   }
 }
 
-/*SHOW MODAL*/
+/*DISPLAY MODAL*/
+
+//SHOW MODAL
+//get the modal container
 const modalContainer = document.getElementById("modalContainer");
 //get button to show modal
 const showModalBtn = document.getElementById("showModal");
+//Add event to display modal
 showModalBtn.addEventListener("click", () => {
+  //Togle if exist class remove i doesnt exist add
   modalContainer.classList.toggle("modal__container-hide");
   modalContainer.classList.toggle("modal__container-show");
 });
 
+//HIDE MODAL
+//X button
+const cancelBtn = document.getElementById("form_header_cancel");
 const closeBtn = document.getElementById("closeBtn");
+cancelBtn.addEventListener("click", closeModal);
 closeBtn.addEventListener("click", closeModal);
+//Container general close
 modalContainer.addEventListener("click", closeModal);
+//Escape button to close modal
+//Event keyup when you  release the escape
 document.addEventListener("keyup", escCloseModal);
 function escCloseModal(e) {
+  //only do the event if modal container is displayed and the key is Esc
   if (
     modalContainer.classList.contains("modal__container-show") &&
     e.key === "Escape"
@@ -133,15 +146,23 @@ function escCloseModal(e) {
   }
 }
 function closeModal(e) {
+  e.preventDefault();
+  console.log("hola");
+  //If target click is same as the element who trigger the event
+  //this = Element that trigger the element
+  //e.target = the element where you click
   if (e.target === this) {
+    //Togle if exist class remove if doesnt add
     modalContainer.classList.toggle("modal__container-hide");
     modalContainer.classList.toggle("modal__container-show");
   }
 }
 
+//CLASS TO CREATE OBJECTS
 //Save in local storage and array of objects
-
+//Create a class to create multiple objects from this class
 class CalendarEvent {
+  //Atributes of the class
   constructor(title, initialDate, endDate, reminder, description, eventType) {
     this.title = title;
     this.initialDate = initialDate;
@@ -152,8 +173,11 @@ class CalendarEvent {
   }
 }
 
+//SAVE BUTTON
+//Event when click on save button
 const saveBtn = document.getElementById("saveContent");
 saveBtn.addEventListener("click", () => {
+  //Create a object from the class CalendarEvent
   const event = new CalendarEvent(
     "Entregar Calendar",
     "02/03/2022 18:00h",
@@ -170,8 +194,9 @@ saveBtn.addEventListener("click", () => {
     "Este dia habra que entregar el jueguito para joselito",
     "Study"
   );
-
+  //Array of objects to store the CalencdarEvent object
   const eventsArray = [];
+  //If localStorage have content do a for to store the values in array objects
   if (localStorage.length > 0) {
     const arrObj = JSON.parse(localStorage.getItem("event"));
     for (const obj of arrObj) {
@@ -179,14 +204,15 @@ saveBtn.addEventListener("click", () => {
       eventsArray.push(obj);
     }
   }
+  //Push the new object to array of objects
   eventsArray.push(event, event2);
+  //Add the array of objects to the localStorage
   localStorage.setItem("event", [JSON.stringify(eventsArray)]);
-  console.log(eventsArray);
 });
 
 //modal verification
 //Save btn
-const createEvent = document.getElementById("form__header-btn-create");
+const createEvent = document.getElementById("form_header_save");
 //Takes all inputs in form whit class input
 const formInputs = document.querySelectorAll(".input");
 //Object  for inpu verification
@@ -210,8 +236,7 @@ createEvent.addEventListener("click", (event) => {
   event.preventDefault();
   if (Object.values(inputStatus).every((item) => item === true)) {
     //add data in object
-    console.log("Set form data in Object");
-    console.log(Object.values(inputStatus));
+    console.log("OK");
   }
 });
 //Check the input value if is correct changes the  Object "InputStatus"
