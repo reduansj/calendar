@@ -49,6 +49,7 @@
         class="calendar__days calendar__days-style"
         id="calendarDays"
       ></section>
+      
     </section>
     <form>
       <fieldset class="form__header">
@@ -56,7 +57,8 @@
         <input
           type="text"
           name="event-title"
-          class="form__header-title"
+          data-type="title"
+          class="form__header-title input"
           id="form__header-title"
         />
 
@@ -71,21 +73,22 @@
           <option value="birthday">Birthday</option>
         </select>
         <input
-          type="date"
+          type="datetime-local"
           name="event-date"
-          class="form__header-date"
+          data-type="time"
+          class="form__header-date input"
           id="form__header-date"
         />
         <label for="end-date">End event</label>
         <input
           type="checkbox"
           class="form__header-checkbox-date"
-          id="form__header-checkbox-date"
+          id="form__header-checkbox-date "
           name="end-date"
           value="date"
         />
         <input
-          type="date"
+          type="datetime-local"
           name="end-date"
           class="form__header-date"
           id="form__header-end-date"
