@@ -15,6 +15,7 @@ window.onload = () => {
   //Add current year and month
   printDaysCalendar();
   addNewDatesText();
+  addEventsDay();
 };
 
 //!GET DAYS IN MONTH
@@ -284,5 +285,15 @@ function escCloseModal(e) {
     e.key === "Escape"
   ) {
     togleClases(modalContainer, "hide__element", "show__element");
+  }
+}
+
+//!
+function addEventsDay() {
+  const getDayEvent = document.querySelectorAll(".calendar__day__item");
+  for (const e of getDayEvent) {
+    e.addEventListener("click", (e) => {
+      console.log(e.target);
+    });
   }
 }
