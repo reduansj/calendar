@@ -257,20 +257,21 @@ const cancelBtn = document.getElementById("cancelBtn");
 //X button
 const closeBtn = document.getElementById("closeBtn");
 //Events to close modal
-modalContainer.addEventListener("click", closeModal);
+
 cancelBtn.addEventListener("click", closeModal);
 closeBtn.addEventListener("click", closeModal);
 
 function closeModal(e) {
   e.preventDefault();
-  //If target click is same as the element who trigger the event
-  //this = Element that trigger the element
-  //e.target = the element where you click
-  if (e.target === this) {
-    //Togle if exist class remove if doesnt add
+  togleClases(modalContainer, "hide__element", "show__element");
+}
+
+//*GENERAL CONTAINER CLOSE
+modalContainer.addEventListener("click", (e) => {
+  if (e.target === modalContainer) {
     togleClases(modalContainer, "hide__element", "show__element");
   }
-}
+});
 
 //*ESC KEY close
 //Escape button to close modal
