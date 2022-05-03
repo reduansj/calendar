@@ -175,40 +175,40 @@ class CalendarEvent {
 
 //SAVE BUTTON
 //Event when click on save button
-const saveBtn = document.getElementById("saveContent");
-saveBtn.addEventListener("click", () => {
-  //Create a object from the class CalendarEvent
-  const event = new CalendarEvent(
-    "Entregar Calendar",
-    "02/03/2022 18:00h",
-    "06/03/2022 17:00h",
-    5,
-    "Este dia habra que entregar este proyecto",
-    "Study"
-  );
-  const event2 = new CalendarEvent(
-    "Entregar Wordle",
-    "01/05/2022 16:00h",
-    "10/07/2022 19:00h",
-    10,
-    "Este dia habra que entregar el jueguito para joselito",
-    "Study"
-  );
-  //Array of objects to store the CalencdarEvent object
-  const eventsArray = [];
-  //If localStorage have content do a for to store the values in array objects
-  if (localStorage.length > 0) {
-    const arrObj = JSON.parse(localStorage.getItem("event"));
-    for (const obj of arrObj) {
-      console.log(obj);
-      eventsArray.push(obj);
-    }
-  }
-  //Push the new object to array of objects
-  eventsArray.push(event, event2);
-  //Add the array of objects to the localStorage
-  localStorage.setItem("event", [JSON.stringify(eventsArray)]);
-});
+// const saveBtn = document.getElementById("saveContent");
+// saveBtn.addEventListener("click", () => {
+//   //Create a object from the class CalendarEvent
+//   const event = new CalendarEvent(
+//     "Entregar Calendar",
+//     "02/03/2022 18:00h",
+//     "06/03/2022 17:00h",
+//     5,
+//     "Este dia habra que entregar este proyecto",
+//     "Study"
+//   );
+//   const event2 = new CalendarEvent(
+//     "Entregar Wordle",
+//     "01/05/2022 16:00h",
+//     "10/07/2022 19:00h",
+//     10,
+//     "Este dia habra que entregar el jueguito para joselito",
+//     "Study"
+//   );
+//   //Array of objects to store the CalencdarEvent object
+//   const eventsArray = [];
+//   //If localStorage have content do a for to store the values in array objects
+//   if (localStorage.length > 0) {
+//     const arrObj = JSON.parse(localStorage.getItem("event"));
+//     for (const obj of arrObj) {
+//       console.log(obj);
+//       eventsArray.push(obj);
+//     }
+//   }
+//   //Push the new object to array of objects
+//   eventsArray.push(event, event2);
+//   //Add the array of objects to the localStorage
+//   localStorage.setItem("event", [JSON.stringify(eventsArray)]);
+// });
 
 //modal verification
 //Save btn
@@ -235,7 +235,11 @@ formInputs.forEach((input) => {
 createEvent.addEventListener("click", (event) => {
   event.preventDefault();
   if (Object.values(inputStatus).every((item) => item === true)) {
+    //Get values of input
+    // const title = document.getElementById("form__header-title");
+    // const
     //add data in object
+    let event = new CalendarEvent();
     console.log("OK");
   }
 });
