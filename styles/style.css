@@ -19,6 +19,7 @@ body {
   height: 100%;
   background-color: aqua;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  display: none;
 }
 
 /* !CALENDAR HEADER*/
@@ -72,7 +73,49 @@ body {
 }
 
 /*!MODAL TEST STYLES*/
+/*!MODAL FORM*/
 .modal__container {
+  position: absolute;
+  display: flex;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.603);
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+.modal__content {
+  position: absolute;
+  background-color: red;
+  text-align: center;
+}
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.hide__element {
+  display: none;
+}
+.show__element {
+  display: flex;
+}
+
+/* .form__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vh;
+  height: 90vh;
+}
+.requiredInput {
+  border-color: red;
+  background-color: rgba(255, 17, 0, 0.377);
+} */
+
+/* .modal__container {
   position: absolute;
   top: 0;
   left: 0;
@@ -90,7 +133,6 @@ body {
 }
 .modal__content {
   position: absolute;
-  width: 50%;
   background-color: red;
   text-align: center;
 }
@@ -100,4 +142,4 @@ body {
   right: 0;
   font-size: 2rem;
   cursor: pointer;
-}
+} */

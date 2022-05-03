@@ -110,71 +110,89 @@ function getStartDay() {
   }
 }
 
-/*DISPLAY MODAL*/
-
-//SHOW MODAL
-//get the modal container
-const modalContainer = document.getElementById("modalContainer");
-//get button to show modal
-const showModalBtn = document.getElementById("showModal");
-//Add event to display modal
-showModalBtn.addEventListener("click", () => {
-  //Togle if exist class remove i doesnt exist add
-  modalContainer.classList.toggle("modal__container-hide");
-  modalContainer.classList.toggle("modal__container-show");
+//CHECKBOX DISPLAY FIELDSET
+const endCheckBox = document.getElementById("addEndDate");
+const remainderCheckbox = document.getElementById("addRemainder");
+const fieldsetEndDate = document.getElementById("endDateContainer");
+const reminderContainer = document.getElementById("remainderContainer");
+//add event to the checkbox
+endCheckBox.addEventListener("change", () => {
+  togleClases(fieldsetEndDate, "hide__element", "show__element");
+});
+remainderCheckbox.addEventListener("change", () => {
+  togleClases(reminderContainer, "hide__element", "show__element");
 });
 
-//HIDE MODAL
-//X button
-const cancelBtn = document.getElementById("form_header_cancel");
-const closeBtn = document.getElementById("closeBtn");
-cancelBtn.addEventListener("click", closeModal);
-closeBtn.addEventListener("click", closeModal);
-//Container general close
-modalContainer.addEventListener("click", closeModal);
-//Escape button to close modal
-//Event keyup when you  release the escape
-document.addEventListener("keyup", escCloseModal);
-function escCloseModal(e) {
-  //only do the event if modal container is displayed and the key is Esc
-  if (
-    modalContainer.classList.contains("modal__container-show") &&
-    e.key === "Escape"
-  ) {
-    modalContainer.classList.toggle("modal__container-hide");
-    modalContainer.classList.toggle("modal__container-show");
-  }
-}
-function closeModal(e) {
-  e.preventDefault();
-  console.log("hola");
-  //If target click is same as the element who trigger the event
-  //this = Element that trigger the element
-  //e.target = the element where you click
-  if (e.target === this) {
-    //Togle if exist class remove if doesnt add
-    modalContainer.classList.toggle("modal__container-hide");
-    modalContainer.classList.toggle("modal__container-show");
-  }
+//Class toggle between clases hide/show element
+function togleClases(element, classElemHide, classElemShow) {
+  element.classList.toggle(classElemHide);
+  element.classList.toggle(classElemShow);
 }
 
-//CLASS TO CREATE OBJECTS
-//Save in local storage and array of objects
-//Create a class to create multiple objects from this class
-class CalendarEvent {
-  //Atributes of the class
-  constructor(title, initialDate, endDate, reminder, description, eventType) {
-    this.title = title;
-    this.initialDate = initialDate;
-    this.endDate = endDate;
-    this.reminder = reminder;
-    this.description = description;
-    this.eventType = eventType;
-  }
-}
+// /*DISPLAY MODAL*/
+// //SHOW MODAL
+// //get the modal container
+// const modalContainer = document.getElementById("modalContainer");
+// //get button to show modal
+// const showModalBtn = document.getElementById("showModal");
+// //Add event to display modal
+// showModalBtn.addEventListener("click", () => {
+//   //Togle if exist class remove i doesnt exist add
+//   modalContainer.classList.toggle("modal__container-hide");
+//   modalContainer.classList.toggle("modal__container-show");
+// });
 
-//SAVE BUTTON
-//Event when click on save button
+// //HIDE MODAL
+// //X button
+// const cancelBtn = document.getElementById("form_header_cancel");
+// const closeBtn = document.getElementById("closeBtn");
+// cancelBtn.addEventListener("click", closeModal);
+// closeBtn.addEventListener("click", closeModal);
+// //Container general close
+// modalContainer.addEventListener("click", closeModal);
+// //Escape button to close modal
+// //Event keyup when you  release the escape
+// document.addEventListener("keyup", escCloseModal);
+// function escCloseModal(e) {
+//   //only do the event if modal container is displayed and the key is Esc
+//   if (
+//     modalContainer.classList.contains("modal__container-show") &&
+//     e.key === "Escape"
+//   ) {
+//     modalContainer.classList.toggle("modal__container-hide");
+//     modalContainer.classList.toggle("modal__container-show");
+//   }
+// }
+// function closeModal(e) {
+//   e.preventDefault();
+//   console.log("hola");
+//   //If target click is same as the element who trigger the event
+//   //this = Element that trigger the element
+//   //e.target = the element where you click
+//   if (e.target === this) {
+//     //Togle if exist class remove if doesnt add
+//     modalContainer.classList.toggle("modal__container-hide");
+//     modalContainer.classList.toggle("modal__container-show");
+//   }
+// }
+
+// //CLASS TO CREATE OBJECTS
+// //Save in local storage and array of objects
+// //Create a class to create multiple objects from this class
+// class CalendarEvent {
+//   //Atributes of the class
+//   constructor(title, initialDate, endDate, reminder, description, eventType) {
+//     this.title = title;
+//     this.initialDate = initialDate;
+//     this.endDate = endDate;
+//     this.reminder = reminder;
+//     this.description = description;
+//     this.eventType = eventType;
+//   }
+// }
+
+// //SAVE BUTTON
+// //Event when click on save button
 // const saveBtn = document.getElementById("saveContent");
 // saveBtn.addEventListener("click", () => {
 //   //Create a object from the class CalendarEvent
@@ -210,52 +228,52 @@ class CalendarEvent {
 //   localStorage.setItem("event", [JSON.stringify(eventsArray)]);
 // });
 
-//modal verification
-//Save btn
-const createEvent = document.getElementById("form_header_save");
-//Takes all inputs in form whit class input
-const formInputs = document.querySelectorAll(".input");
-//Object  for inpu verification
-const inputStatus = {
-  title: false,
-  time: false,
-};
-//Regexp  for the inputs
-const checkInputexpression = {
-  title: /^(?=.{1,60}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9]+(?<![_.])$/g,
-  time: /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d(?:\.\d+)?Z?/g,
-};
-//Function iterates all inputs when it changes
-formInputs.forEach((input) => {
-  input.addEventListener("change", (e) => {
-    updateInputs(e);
-  });
-});
-//When all  inputs are true  crate  the object in local storage & the day.
-createEvent.addEventListener("click", (event) => {
-  event.preventDefault();
-  if (Object.values(inputStatus).every((item) => item === true)) {
-    //Get values of input
-    // const title = document.getElementById("form__header-title");
-    // const
-    //add data in object
-    let event = new CalendarEvent();
-    console.log("OK");
-  }
-});
-//Check the input value if is correct changes the  Object "InputStatus"
-function updateInputs(e) {
-  const currentInput = e.target;
+// //modal verification
+// //Save btn
+// const createEvent = document.getElementById("form_header_save");
+// //Takes all inputs in form whit class input
+// const formInputs = document.querySelectorAll(".input");
+// //Object  for inpu verification
+// const inputStatus = {
+//   title: false,
+//   time: false,
+// };
+// //Regexp  for the inputs
+// const checkInputexpression = {
+//   title: /^(?=.{1,60}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9]+(?<![_.])$/g,
+//   time: /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d(?:\.\d+)?Z?/g,
+// };
+// //Function iterates all inputs when it changes
+// formInputs.forEach((input) => {
+//   input.addEventListener("change", (e) => {
+//     updateInputs(e);
+//   });
+// });
+// //When all  inputs are true  crate  the object in local storage & the day.
+// createEvent.addEventListener("click", (event) => {
+//   event.preventDefault();
+//   if (Object.values(inputStatus).every((item) => item === true)) {
+//     //Get values of input
+//     // const title = document.getElementById("form__header-title");
+//     // const
+//     //add data in object
+//     let event = new CalendarEvent();
+//     console.log("OK");
+//   }
+// });
+// //Check the input value if is correct changes the  Object "InputStatus"
+// function updateInputs(e) {
+//   const currentInput = e.target;
 
-  const isValid = new RegExp(
-    checkInputexpression[currentInput.dataset.type]
-  ).test(currentInput.value);
+//   const isValid = new RegExp(
+//     checkInputexpression[currentInput.dataset.type]
+//   ).test(currentInput.value);
 
-  if (!currentInput.value.length == 0 && isValid) {
-    inputStatus[currentInput.dataset.type] = isValid;
-    document.getElementById(currentInput.id).classList.remove("requiredInput");
-  } else {
-    inputStatus[currentInput.dataset.type] = isValid;
-    document.getElementById(currentInput.id).classList.add("requiredInput");
-  }
-}
+//   if (!currentInput.value.length == 0 && isValid) {
+//     inputStatus[currentInput.dataset.type] = isValid;
+//     document.getElementById(currentInput.id).classList.remove("requiredInput");
+//   } else {
+//     inputStatus[currentInput.dataset.type] = isValid;
+//     document.getElementById(currentInput.id).classList.add("requiredInput");
+//   }
+// }
