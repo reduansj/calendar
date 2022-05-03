@@ -51,74 +51,70 @@
       ></section>
     </section>
     <!--!MODAL TEST HTML -->
-    <div class="modal__container modal__container-hide" id="modalContainer">
+    <section class="modal__container modal__container-hide" id="modalContainer">
       <div class="modal__content">
         <button id="closeBtn" class="modal__closeBtn">X</button>
-        <h1>TEST MODAL</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam
-          necessitatibus amet aut accusantium, cupiditate voluptates minima
-          dolores incidunt soluta velit.
-        </p>
+        <form>
+          <fieldset class="form__header">
+            <label for="title">Add title</label>
+            <input
+              type="text"
+              name="event-title"
+              data-type="title"
+              class="form__header-title input"
+              id="form__header-title"
+            />
+    
+            <select
+              id="form__header-event-type"
+              class="form__header-event-type"
+              name="cars"
+            >
+              <option value="meeting">Meeting</option>
+              <option value="personal">Personal</option>
+              <option value="study">Study</option>
+              <option value="birthday">Birthday</option>
+            </select>
+            <input
+              type="datetime-local"
+              name="event-date"
+              data-type="time"
+              class="form__header-date input"
+              id="form__header-date"
+            />
+            <label for="end-date">End event</label>
+            <input
+              type="checkbox"
+              class="form__header-checkbox-date"
+              id="form__header-checkbox-date "
+              name="end-date"
+              value="date"
+            />
+            <input
+              type="datetime-local"
+              name="end-date"
+              class="form__header-date"
+              id="form__header-end-date"
+            />
+            <h3>Description</h3>
+            <textarea
+              name="description"
+              id="form__header-textarea"
+              cols="30"
+              rows="10"
+            ></textarea>
+            <button class="form__header-btn-cancel">Cancel</button>
+            <button class="form__header-btn-create" id="form__header-btn-create">Create</button>
+          </fieldset>
+        </form>
         <button id="saveContent">Save</button>
       </div>
     </div>
+   
+      
+    </section> 
     <!-- !MODAL BTN SHOW MODAL TEST -->
     <button id="showModal">Show modal</button>
-      
-    </section>
-    <!-- <form>
-      <fieldset class="form__header">
-        <label for="title">Add title</label>
-        <input
-          type="text"
-          name="event-title"
-          data-type="title"
-          class="form__header-title input"
-          id="form__header-title"
-        />
-
-        <select
-          id="form__header-event-type"
-          class="form__header-event-type"
-          name="cars"
-        >
-          <option value="meeting">Meeting</option>
-          <option value="personal">Personal</option>
-          <option value="study">Study</option>
-          <option value="birthday">Birthday</option>
-        </select>
-        <input
-          type="datetime-local"
-          name="event-date"
-          data-type="time"
-          class="form__header-date input"
-          id="form__header-date"
-        />
-        <label for="end-date">End event</label>
-        <input
-          type="checkbox"
-          class="form__header-checkbox-date"
-          id="form__header-checkbox-date "
-          name="end-date"
-          value="date"
-        />
-        <input
-          type="datetime-local"
-          name="end-date"
-          class="form__header-date"
-          id="form__header-end-date"
-        />
-        <h3>Description</h3>
-        <textarea
-          name="description"
-          id="form__header-textarea"
-          cols="30"
-          rows="10"
-        ></textarea>
-        <button class="form__header-btn-cancel">Cancel</button>
-        <button class="form__header-btn-create" id="form__header-btn-create">Create</button>
-      </fieldset>
-    </form> -->
+    <!--  -->
   </body>
 </html>

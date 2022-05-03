@@ -91,7 +91,6 @@ body {
 .modal__content {
   position: absolute;
   width: 50%;
-  height: 50%;
   background-color: red;
   text-align: center;
 }
