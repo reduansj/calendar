@@ -1,3 +1,4 @@
+// import{}
 //GLOBAL VARIABLES
 //GET CURRENT DATE AND DAYS OF MONTH
 //Create object date , get current full date
@@ -182,3 +183,58 @@ saveBtn.addEventListener("click", () => {
   localStorage.setItem("event", [JSON.stringify(eventsArray)]);
   console.log(eventsArray);
 });
+//event data
+let eventData = {
+  key: "",
+  title: "",
+  date: [],
+  endDate: [],
+  remainder: "",
+  description: "",
+  type: "",
+};
+
+//modal verification
+const createEvent = document.getElementById("form__header-btn-create");
+
+const formInputs = document.querySelectorAll(".input");
+
+const inputStatus = {
+  title: false,
+  time: false,
+};
+const checkInputexpression = {
+  title: /^(?=.{1,60}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9]+(?<![_.])$/g,
+  time: /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d(?:\.\d+)?Z?/g,
+};
+
+formInputs.forEach((input) => {
+  input.addEventListener("change", (e) => {
+    updateInputs(e);
+  });
+});
+
+createEvent.addEventListener("click", (event) => {
+  event.preventDefault();
+  if (Object.values(inputStatus).every((item) => item === true)) {
+    //add data in object
+    console.log("Set form data in Object");
+    console.log(Object.values(inputStatus));
+  }
+});
+
+function updateInputs(e) {
+  const currentInput = e.target;
+
+  const isValid = new RegExp(
+    checkInputexpression[currentInput.dataset.type]
+  ).test(currentInput.value);
+
+  if (!currentInput.value.length == 0 && isValid) {
+    inputStatus[currentInput.dataset.type] = isValid;
+    document.getElementById(currentInput.id).classList.remove("requiredInput");
+  } else {
+    inputStatus[currentInput.dataset.type] = isValid;
+    document.getElementById(currentInput.id).classList.add("requiredInput");
+  }
+}

@@ -1,0 +1,13 @@
+/*!MODAL FORM*/
+.form__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vh;
+    height: 90vh;
+}
+.requiredInput {
+    border-color: red;
+    background-color: rgba(255, 17, 0, 0.377);
+}
