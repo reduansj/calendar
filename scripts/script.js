@@ -15,7 +15,6 @@ window.onload = () => {
   //Add current year and month
   printDaysCalendar();
   addNewDatesText();
-  addEventsDay();
 };
 
 //!GET DAYS IN MONTH
@@ -29,13 +28,21 @@ function printDaysCalendar() {
   const numDays = getDaysMonth(year, month);
   calendarDays.textContent = "";
   getStartDay();
+  //Format date with correspondent 0
+  let formatMonth;
+  let formatDay;
+  month < 10 ? (formatMonth = `0${month + 1}`) : (formatMonth = month + 1);
   //Container to put the year
   for (let i = 0; i < numDays; i++) {
-    let day = document.createElement("li");
+    i + 1 < 10 ? (formatDay = `0${i + 1}`) : (formatDay = i + 1);
+    let day = document.createElement("div");
+    day.setAttribute("data-date", `${year}-${formatMonth}-${formatDay}`);
     day.textContent = i + 1;
     day.className = "calendar__day__item";
     calendarDays.appendChild(day);
   }
+  //add events to all the days
+  addEventsDay();
 }
 
 //!ADD CURRENT MONTH AND CURRENT YEAR TO TEXT
@@ -104,7 +111,7 @@ function getStartDay() {
   daysPrevMonth++;
   /*Add at the begining the days of the previous month*/
   for (let i = 0; i < dayIndex; i++) {
-    let day = document.createElement("li");
+    let day = document.createElement("div");
     day.textContent = daysPrevMonth++;
     day.className = "calendar__day__item-bloqued";
     calendarDays.appendChild(day);
@@ -241,10 +248,12 @@ const modalContainer = document.getElementById("modalContainer");
 //get button to show modal
 const showModalBtn = document.getElementById("showModal");
 //Add event to display modal
-showModalBtn.addEventListener("click", () => {
+showModalBtn.addEventListener("click", showModal);
+
+function showModal(params) {
   //Togle if exist class remove i doesnt exist add
   togleClases(modalContainer, "hide__element", "show__element");
-});
+}
 
 //Class toggle between clases hide/show element
 function togleClases(element, classElemHide, classElemShow) {
@@ -265,12 +274,14 @@ closeBtn.addEventListener("click", closeModal);
 function closeModal(e) {
   e.preventDefault();
   togleClases(modalContainer, "hide__element", "show__element");
+  resetValuesForm();
 }
 
 //*GENERAL CONTAINER CLOSE
 modalContainer.addEventListener("click", (e) => {
   if (e.target === modalContainer) {
     togleClases(modalContainer, "hide__element", "show__element");
+    resetValuesForm();
   }
 });
 
@@ -285,15 +296,32 @@ function escCloseModal(e) {
     e.key === "Escape"
   ) {
     togleClases(modalContainer, "hide__element", "show__element");
+    resetValuesForm();
   }
 }
 
-//!
+//!RESET VALUES INPUT
+function resetValuesForm(e) {
+  const input = modalContainer.querySelectorAll("input");
+  const textarea = (modalContainer.querySelector("textarea").value = " ");
+  for (const elem of input) {
+    elem.value = "";
+  }
+}
+
+//! GENERATE EVENT FOR EACH DAY IN CALENDAR
 function addEventsDay() {
   const getDayEvent = document.querySelectorAll(".calendar__day__item");
   for (const e of getDayEvent) {
-    e.addEventListener("click", (e) => {
-      console.log(e.target);
-    });
+    e.addEventListener("click", showModalClickDay);
   }
+}
+
+//!SHOW MODAL ON CLICK IN CALENDAR
+function showModalClickDay(e) {
+  const date = e.target.dataset.date;
+  const inputDate = (document.getElementById(
+    "initialDate"
+  ).value = `${date}T00:00`);
+  showModal();
 }
