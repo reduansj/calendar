@@ -101,3 +101,21 @@ body {
 .show__element {
   display: flex;
 }
+
+/*!CONTAINER SHOW EVENTS TITLE*/
+.event__container__title {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  margin: 0 auto;
+  background-color: violet;
+  flex-direction: column;
+  /* TODO: SCROLL MORE EVENTS */
+}
+/*TODO: CHANGE STYLES*/
+.event__title__div {
+  padding: 2rem;
+  background-color: aliceblue;
+  margin: 1rem;
+  cursor: pointer;
+}

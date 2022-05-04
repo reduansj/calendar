@@ -152,10 +152,10 @@ saveBtn.addEventListener("click", (e) => {
   let descriptionValue = checkDescription(description.value);
   //If all the inputs are true is OK / verification its OK
   if (titleValue && initialDateValue && descriptionValue) {
-    console.log("OK");
     storeLocalStorage();
+    printDaysCalendar();
+    closeModal();
   } else {
-    console.log("ERROR");
   }
 });
 
@@ -231,8 +231,11 @@ function getSelectedOption(selectElement) {
 
 //!STORE IN LOCAL STORAGE
 function storeLocalStorage() {
+  const eventType = getSelectedOption("eventType");
+  const reminderTime = getSelectedOption("remainderTime");
   //Create calendar event object
   const event = new CalendarEvent(
+    "",
     title.value,
     initialDate.value,
     initialTime.value,
@@ -255,6 +258,7 @@ function storeLocalStorage() {
   }
   //Push the new object to array of objects
   eventsArray.push(event);
+  event.id = eventsArray.length;
   //Add the array of objects to the localStorage
   localStorage.setItem(initialDate.value, [JSON.stringify(eventsArray)]);
 }
@@ -270,8 +274,9 @@ const showModalBtn = document.getElementById("showModal");
 showModalBtn.addEventListener("click", showModal);
 
 function showModal(e) {
+  e.stopPropagation();
   //Togle if exist class remove i doesnt exist add
-  console.log(e.target);
+
   if (e.target.id === "showModal") {
     initialDate.disabled = false;
   } else {
@@ -297,7 +302,7 @@ cancelBtn.addEventListener("click", closeModal);
 closeBtn.addEventListener("click", closeModal);
 
 function closeModal(e) {
-  e.preventDefault();
+  // e.preventDefault();
   togleClases(modalContainer, "hide__element", "show__element");
   resetValuesForm();
 }
@@ -344,22 +349,83 @@ function addEventsDay() {
 
 //!SHOW MODAL ON CLICK IN CALENDAR
 function showModalClickDay(e) {
-  const date = e.target.dataset.date;
-  initialDate.value = date;
-  showModal(e);
+  if (e.target.className !== "showEvents") {
+    const date = e.target.dataset.date;
+    initialDate.value = date;
+    showModal(e);
+  }
 }
 
 //!ADD EVENTS TO THE CALENDAR
 function addEventsToCalendar(key, element) {
   const dayData = JSON.parse(localStorage.getItem(key));
   if (dayData !== null) {
-    for (const e of dayData) {
-      //22-02-03 = e.title ,e.description...
-      const eventTitle = document.createElement("button");
-      eventTitle.textContent = e.title;
-      element.appendChild(eventTitle);
+    //22-02-03 = e.title ,e.description...
+    const eventTitle = document.createElement("button");
+    eventTitle.textContent = "SHOW EVENT";
+    eventTitle.className = "showEvents";
+    eventTitle.dataset.dateBtn = element.dataset.date;
+    element.appendChild(eventTitle);
+    addEventShowTitle();
+  }
+}
+
+//!ADD EVENTS CLICK TO SHOWEVENT BUTTON
+function addEventShowTitle(e) {
+  const showEvents = document.querySelectorAll("[data-date-btn]");
+  for (const event of showEvents) {
+    event.addEventListener("click", (e) => {
+      //Pass the date to showEventsCOnatiner function
+      const date = e.target.dataset.dateBtn;
+      showEventsContainer(date);
+    });
+  }
+}
+
+//!SHOW CONTAINER OF TITLE EVENTS
+function showEventsContainer(date) {
+  //Get items from localStorage from the date passed of the btn showEvents
+  const dateData = JSON.parse(localStorage.getItem(date));
+  //Container with all title text events
+  const eventContainerTitle = document.getElementById("eventContainerTitle");
+  //Iterate all the events of the date given from localStorage
+  for (const event of dateData) {
+    //event.title , event1.title
+    //Create element div for every event on that day
+    const titleDiv = document.createElement("div");
+    titleDiv.textContent = event.title;
+    titleDiv.className = "event__title__div";
+    //Add a event to the div created for every event on that date
+    titleDiv.addEventListener("click", () => {
+      //pass the event example:
+      /*
+      event{
+      title: Peluquero
+      initialDate: 2022-05-03
+      reminder: 5
+      description: Ir al peluquero
+      eventType: other
+    }
+      */
+      showEventData(event);
+    });
+    //Append the div inside general container that stores all events title
+    eventContainerTitle.appendChild(titleDiv);
+  }
+  //Show the container with all the events
+  togleClases(eventContainerTitle, "hide__element", "show__element");
+}
+
+function showEventData(event) {
+  //Get all the entries of the object {entries -> key & value}
+  //iteration to get key and value
+  for (const [key, value] of Object.entries(event)) {
+    //Only print if value has something
+    if (value.length > 0) {
+      console.log(`${key}: ${value}`);
     }
   }
 }
+
 //!DELETE CALENDAR EVENTS
 function deleteEvent() {}
