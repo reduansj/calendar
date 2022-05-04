@@ -138,6 +138,8 @@ const endDate = document.getElementById("endDate");
 const description = document.getElementById("description");
 const eventType = getSelectedOption("eventType");
 const reminderTime = getSelectedOption("remainderTime");
+const initialTime = document.getElementById("initialTime");
+const endTime = document.getElementById("endTime");
 
 //Get save btn and do the event
 const saveBtn = document.getElementById("saveBtn");
@@ -198,10 +200,21 @@ function checkDescription(description) {
 //Create a class to create multiple objects from this class
 class CalendarEvent {
   //Atributes of the class
-  constructor(title, initialDate, endDate, reminder, description, eventType) {
+  constructor(
+    title,
+    initialDate,
+    initialTime,
+    endDate,
+    endTime,
+    reminder,
+    description,
+    eventType
+  ) {
     this.title = title;
     this.initialDate = initialDate;
+    this.initialTime = initialTime;
     this.endDate = endDate;
+    this.endTime = endTime;
     this.reminder = reminder;
     this.description = description;
     this.eventType = eventType;
@@ -219,7 +232,9 @@ function storeLocalStorage() {
   const event = new CalendarEvent(
     title.value,
     initialDate.value,
+    initialTime.value,
     endDate.value,
+    endTime.value,
     reminderTime,
     description.value,
     eventType
@@ -250,8 +265,14 @@ const showModalBtn = document.getElementById("showModal");
 //Add event to display modal
 showModalBtn.addEventListener("click", showModal);
 
-function showModal(params) {
+function showModal(e) {
   //Togle if exist class remove i doesnt exist add
+  console.log(e.target);
+  if (e.target.id === "showModal") {
+    initialDate.disabled = false;
+  } else {
+    initialDate.disabled = true;
+  }
   togleClases(modalContainer, "hide__element", "show__element");
 }
 
@@ -320,8 +341,6 @@ function addEventsDay() {
 //!SHOW MODAL ON CLICK IN CALENDAR
 function showModalClickDay(e) {
   const date = e.target.dataset.date;
-  const inputDate = (document.getElementById(
-    "initialDate"
-  ).value = `${date}T00:00`);
-  showModal();
+  initialDate.value = date;
+  showModal(e);
 }
