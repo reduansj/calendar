@@ -40,6 +40,7 @@ function printDaysCalendar() {
     day.textContent = i + 1;
     day.className = "calendar__day__item";
     calendarDays.appendChild(day);
+    addEventsToCalendar(day.dataset.date, day);
   }
   //add events to all the days
   addEventsDay();
@@ -201,6 +202,7 @@ function checkDescription(description) {
 class CalendarEvent {
   //Atributes of the class
   constructor(
+    id,
     title,
     initialDate,
     initialTime,
@@ -210,6 +212,7 @@ class CalendarEvent {
     description,
     eventType
   ) {
+    this.id = id;
     this.title = title;
     this.initialDate = initialDate;
     this.initialTime = initialTime;
@@ -242,8 +245,9 @@ function storeLocalStorage() {
   //Array of objects to store the CalencdarEvent object
   const eventsArray = [];
   //If localStorage have content do a for to store the values in array objects
-  if (localStorage.length > 0) {
-    const arrObj = JSON.parse(localStorage.getItem("event"));
+  if (localStorage.getItem(initialDate.value) !== null) {
+    const arrObj = JSON.parse(localStorage.getItem(initialDate.value));
+    console.log(arrObj);
     for (const obj of arrObj) {
       console.log(obj);
       eventsArray.push(obj);
@@ -252,7 +256,7 @@ function storeLocalStorage() {
   //Push the new object to array of objects
   eventsArray.push(event);
   //Add the array of objects to the localStorage
-  localStorage.setItem("event", [JSON.stringify(eventsArray)]);
+  localStorage.setItem(initialDate.value, [JSON.stringify(eventsArray)]);
 }
 
 //!DISPLAY MODAL
@@ -324,7 +328,7 @@ function escCloseModal(e) {
 //!RESET VALUES INPUT
 function resetValuesForm(e) {
   const input = modalContainer.querySelectorAll("input");
-  const textarea = (modalContainer.querySelector("textarea").value = " ");
+  modalContainer.querySelector("textarea").value = "";
   for (const elem of input) {
     elem.value = "";
   }
@@ -332,7 +336,7 @@ function resetValuesForm(e) {
 
 //! GENERATE EVENT FOR EACH DAY IN CALENDAR
 function addEventsDay() {
-  const getDayEvent = document.querySelectorAll(".calendar__day__item");
+  const getDayEvent = document.querySelectorAll("[data-date]");
   for (const e of getDayEvent) {
     e.addEventListener("click", showModalClickDay);
   }
@@ -344,3 +348,18 @@ function showModalClickDay(e) {
   initialDate.value = date;
   showModal(e);
 }
+
+//!ADD EVENTS TO THE CALENDAR
+function addEventsToCalendar(key, element) {
+  const dayData = JSON.parse(localStorage.getItem(key));
+  if (dayData !== null) {
+    for (const e of dayData) {
+      //22-02-03 = e.title ,e.description...
+      const eventTitle = document.createElement("button");
+      eventTitle.textContent = e.title;
+      element.appendChild(eventTitle);
+    }
+  }
+}
+//!DELETE CALENDAR EVENTS
+function deleteEvent() {}
