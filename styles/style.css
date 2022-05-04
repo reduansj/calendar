@@ -57,13 +57,14 @@ body {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 }
-.calendar__days-style li {
+.calendar__days-style div {
   margin-top: 2vh;
   height: 3.5rem;
 }
-.calendar__days li {
+.calendar__days div {
   text-align: center;
   list-style: none;
+  cursor: pointer;
 }
 
 .calendar__day__item-bloqued {
@@ -72,8 +73,10 @@ body {
 }
 
 /*!MODAL TEST STYLES*/
+/*!MODAL FORM*/
 .modal__container {
   position: absolute;
+  display: flex;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.603);
@@ -82,22 +85,19 @@ body {
   justify-content: center;
   align-items: center;
 }
-.modal__container-hide {
-  display: none;
-}
-.modal__container-show {
-  display: flex;
-}
 .modal__content {
   position: absolute;
-  width: 50%;
   background-color: red;
   text-align: center;
 }
-
-.modal__closeBtn {
-  position: absolute;
-  right: 0;
-  font-size: 2rem;
-  cursor: pointer;
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.hide__element {
+  display: none;
+}
+.show__element {
+  display: flex;
 }

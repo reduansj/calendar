@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="scripts/script.js" defer></script>
-    <script src="scripts/modal.js"></script>
     <link rel="stylesheet" href="styles/style.css" />
-    <link rel="stylesheet" href="styles/modals.css" />
   </head>
   <body>
     <section id="calendar" class="calendar">
@@ -53,129 +51,105 @@
       ></section>
     </section>
     <!--!MODAL TEST HTML -->
-    <section class="modal__container modal__container-hide" id="modalContainer">
+    <section class="modal__container hide__element" id="modalContainer">
       <section class="modal__content">
-        <form>
-          <fieldset class="form__header">
-            <label for="title">Add title</label>
+        <button id="closeBtn">X</button>
+        <form action="" class="modal__form">
+          <!--Title -->
+          <label class="modal__form__label">
+            Title:
+            <input type="text" id="title" class="modal__form__input" />
+          </label>
+          <!-- Initial date -->
+          <label class="modal__form__label">
+            Initial date:
             <input
-              type="text"
-              name="event-title"
-              data-type="title"
-              class="form__header-title input"
-              id="form__header-title"
+              type="datetime-local"
+              id="initialDate"
+              class="modal__form__input"
             />
-
-            <select
-              id="form__header-event-type"
-              class="form__header-event-type"
-              name="cars"
-            >
+          </label>
+          <!-- TODO Label input time for click day event -->
+          <!-- <label
+            for=""
+            class="modal__form__label hide__element"
+            id="labelTimeDate"
+          >
+            Time:
+            <input type="time" id="timeDate" />
+          </label> -->
+          <!-- Checkbox end date -->
+          <label class="modal__form__label">
+            Add end date:
+            <input
+              type="checkbox"
+              id="addEndDate"
+              class="modal__form__checkbox"
+            />
+          </label>
+          <!--Fieldset hide end date -->
+          <fieldset
+            id="endDateContainer"
+            class="modal__form__fieldset hide__element"
+          >
+            <!--Input en date -->
+            <label class="modal__form__label">
+              End date:
+              <input
+                type="datetime-local"
+                id="endDate"
+                class="modal__form__input"
+              />
+            </label>
+            <!--Duration date and time-->
+            <span></span>
+          </fieldset>
+          <!-- Reminder -->
+          <label class="modal__form__label">
+            Remaind me when this event expires:
+            <input
+              type="checkbox"
+              id="addRemainder"
+              class="modal__form__checkbox"
+            />
+          </label>
+          <!--Reminder select hide-->
+          <fieldset
+            id="remainderContainer"
+            class="modal__form__fieldset hide__element"
+          >
+            <label class="modal__form__label">
+              Reminder time:
+              <select name="" id="remainderTime">
+                <option value="5" selected>5 minutes before</option>
+                <option value="10">10 minutes before</option>
+                <option value="15">15 minutes before</option>
+                <option value="30">30 minutes before</option>
+                <option value="60">1 hour before</option>
+              </select>
+            </label>
+          </fieldset>
+          <!--Type of event-->
+          <label class="modal__form__label">
+            Event type:
+            <select id="eventType">
               <option value="meeting">Meeting</option>
               <option value="personal">Personal</option>
               <option value="study">Study</option>
-              <option value="birthday">Birthday</option>
+              <option value="other" selected>Other</option>
             </select>
-            <input
-              type="datetime-local"
-              name="event-date"
-              data-type="time"
-              class="form__header-date input"
-              id="form__header-date"
-            />
-            <label for="end-date">End event</label>
-            <input
-              type="checkbox"
-              class="form__header-checkbox-date"
-              id="form__header-checkbox-date "
-              name="end-date"
-              value="date"
-            />
-            <input
-              type="datetime-local"
-              name="end-date"
-              class="form__header-date"
-              id="form__header-end-date"
-            />
-            <h3>Description</h3>
-            <textarea
-              name="description"
-              id="form__header-textarea"
-              cols="30"
-              rows="10"
-            ></textarea>
-            <button class="form__header-btn-cancel" id="form_header_cancel">
-              Cancel
-            </button>
-            <button class="form__header-btn-create" id="form_header_save">
-              Create
-            </button>
+          </label>
+          <label class="modal__form__label">
+            Description
+            <textarea class="modal__form__textarea" id="description"></textarea>
+          </label>
+          <!--buttons fieldset-->
+          <fieldset>
+            <button id="cancelBtn" class="modal__form__button">Cancel</button>
+            <button id="saveBtn" class="modal__form__button">Save</button>
           </fieldset>
         </form>
       </section>
     </section>
-    <!-- <section class="modal__container modal__container-hide" id="modalContainer">
-      <div class="modal__content">
-        <button id="closeBtn" class="modal__closeBtn">X</button>
-        <form>
-          <fieldset class="form__header">
-            <label for="title">Add title</label>
-            <input
-              type="text"
-              name="event-title"
-              data-type="title"
-              class="form__header-title input"
-              id="form__header-title"
-            />
-
-            <select
-              id="form__header-event-type"
-              class="form__header-event-type"
-              name="cars"
-            >
-              <option value="meeting">Meeting</option>
-              <option value="personal">Personal</option>
-              <option value="study">Study</option>
-              <option value="birthday">Birthday</option>
-            </select>
-            <input
-              type="datetime-local"
-              name="event-date"
-              data-type="time"
-              class="form__header-date input"
-              id="form__header-date"
-            />
-            <label for="end-date">End event</label>
-            <input
-              type="checkbox"
-              class="form__header-checkbox-date"
-              id="form__header-checkbox-date "
-              name="end-date"
-              value="date"
-            />
-            <input
-              type="datetime-local"
-              name="end-date"
-              class="form__header-date"
-              id="form__header-end-date"
-            />
-            <h3>Description</h3>
-            <textarea
-              name="description"
-              id="form__header-textarea"
-              cols="30"
-              rows="10"
-            ></textarea>
-            <button class="form__header-btn-cancel" id="form_header_cancel">
-              Cancel
-            </button>
-            <button class="form__header-btn-create" id="form_header_save">
-              Create
-            </button>
-          </fieldset>
-        </form>
-        <button id="saveContent">Save</button>
-      </div>
-    </section> -->
   </body>
 </html>
