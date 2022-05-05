@@ -438,8 +438,8 @@ function showEventData(event) {
   }
   const deleteBtn = document.createElement("button");
   deleteBtn.textContent = "deleteEvent";
-  deleteBtn.addEventListener("click", () => {
-    deleteEvent(event);
+  deleteBtn.addEventListener("click", (e) => {
+    deleteEvent(event, e);
   });
   eventInfoContainer.appendChild(deleteBtn);
   eventInfo.appendChild(eventInfoContainer);
@@ -449,7 +449,8 @@ function showEventData(event) {
 
 
 //!DELETE CALENDAR EVENTS
-function deleteEvent(currentEvent) {
+function deleteEvent(currentEvent, e) {
+  console.log(e.target);
   const arrayObjEvents = JSON.parse(localStorage.getItem(currentEvent.initialDate));
   let pos = 0;
   for (const event of arrayObjEvents) {
@@ -458,7 +459,7 @@ function deleteEvent(currentEvent) {
     }
     pos++;
   }
-  const arrayObjString = JSON.stringify([arrayObjEvents]);
+  const arrayObjString = JSON.stringify(arrayObjEvents);
   localStorage.setItem(currentEvent.initialDate, arrayObjString);
   console.log(arrayObjEvents);
 }
