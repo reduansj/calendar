@@ -250,9 +250,9 @@ function storeLocalStorage() {
   //If localStorage have content do a for to store the values in array objects
   if (localStorage.getItem(initialDate.value) !== null) {
     const arrObj = JSON.parse(localStorage.getItem(initialDate.value));
-    console.log(arrObj);
+    // console.log(arrObj);
     for (const obj of arrObj) {
-      console.log(obj);
+      // console.log(obj);
       eventsArray.push(obj);
     }
   }
@@ -366,24 +366,26 @@ function addEventsToCalendar(key, element) {
     eventTitle.className = "showEvents";
     eventTitle.dataset.dateBtn = element.dataset.date;
     element.appendChild(eventTitle);
-    addEventShowTitle();
+    eventTitle.addEventListener("click", showEventsContainer);
   }
 }
 
 //!ADD EVENTS CLICK TO SHOWEVENT BUTTON
-function addEventShowTitle(e) {
-  const showEvents = document.querySelectorAll("[data-date-btn]");
-  for (const event of showEvents) {
-    event.addEventListener("click", (e) => {
-      //Pass the date to showEventsCOnatiner function
-      const date = e.target.dataset.dateBtn;
-      showEventsContainer(date);
-    });
-  }
-}
+// function addEventShowTitle(e) {
+//   const showEvents = document.querySelectorAll("[data-date-btn]");
+//   for (const event of showEvents) {
+//     event.addEventListener("click", (e) => {
+//       //Pass the date to showEventsCOnatiner function
+//       const date = e.target.dataset.dateBtn;
+//       showEventsContainer(date);
+//     });
+//   }
+// }
 
 //!SHOW CONTAINER OF TITLE EVENTS
-function showEventsContainer(date) {
+function showEventsContainer(e) {
+  const date = e.target.dataset.dateBtn;
+  // console.log(date.target.dataset.dateBtn);
   //Get items from localStorage from the date passed of the btn showEvents
   const dateData = JSON.parse(localStorage.getItem(date));
   //Container with all title text events
