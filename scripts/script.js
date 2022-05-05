@@ -167,9 +167,10 @@ function checkTitle(title) {
 }
 //Check date input
 function checkDate(date) {
+  const arrayDate = date.split("-");
   if (date.length === 0) {
     return false;
-  } else {
+  } else if (new Date(arrayDate[0], arrayDate[1], arrayDate[2]) < new Date()) {
     return true;
   }
 }
