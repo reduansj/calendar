@@ -121,6 +121,7 @@ const fieldsetEndDate = document.getElementById("endDateContainer");
 const reminderContainer = document.getElementById("remainderContainer");
 //add event to the checkbox
 endCheckBox.addEventListener("change", () => {
+  calcTimeBetweenDates();
   togleClases(fieldsetEndDate, "hide__element", "show__element");
 });
 remainderCheckbox.addEventListener("change", () => {
@@ -137,6 +138,8 @@ const eventType = getSelectedOption("eventType");
 const reminderTime = getSelectedOption("remainderTime");
 const initialTime = document.getElementById("initialTime");
 const endTime = document.getElementById("endTime");
+const initialErrorMsg = document.getElementById("initialDateErrorMsg");
+const endErrorMsg = document.getElementById("initialDateErrorMsg");
 
 //Get save btn and do the event
 const saveBtn = document.getElementById("saveBtn");
@@ -146,8 +149,13 @@ saveBtn.addEventListener("click", (e) => {
   let titleValue = checkTitle(title.value);
   let initialDateValue = checkDate(initialDate.value);
   let descriptionValue = checkDescription(description.value);
+  let endDateValue = false;
+  if (endCheckBox.checked) {
+    endDateValue = checkEndDate(endDate.value);
+  }
+
   //If all the inputs are true is OK / verification its OK
-  if (titleValue && initialDateValue && descriptionValue) {
+  if (titleValue && initialDateValue && descriptionValue && !endDateValue) {
     storeLocalStorage();
     printDaysCalendar();
     closeModal();
@@ -167,13 +175,40 @@ function checkTitle(title) {
 }
 //Check date input
 function checkDate(date) {
+  //Convert the date data in to an array.
   const arrayDate = date.split("-");
-  if (date.length === 0) {
+  if (
+    date.length === 0 ||
+    new Date(arrayDate[0], arrayDate[1], arrayDate[2]) > new Date()
+  ) {
+    console.log("initial");
+    togleClases(initialErrorMsg, "hide__element", "show__element");
     return false;
-  } else if (new Date(arrayDate[0], arrayDate[1], arrayDate[2]) < new Date()) {
+  }
+  //Check the current day and compare to the current date.
+  else {
+    togleClases(initialErrorMsg, "hide__element", "show__element");
     return true;
   }
 }
+function checkEndDate(date) {
+  //Convert the date data in to an array.
+  const arrayDate = date.split("-");
+  if (
+    date.length === 0 ||
+    new Date(arrayDate[0], arrayDate[1], arrayDate[2]) > new Date()
+  ) {
+    console.log("end");
+    togleClases(endErrorMsg, "hide__element", "show__element");
+    return true;
+  }
+  //Check the current day and compare to the current date.
+  else {
+    togleClases(endErrorMsg, "hide__element", "show__element");
+    return false;
+  }
+}
+
 //Check description textarea
 function checkDescription(description) {
   if (description.length > 500) {
@@ -182,6 +217,12 @@ function checkDescription(description) {
     return false;
   } else {
     return true;
+  }
+}
+
+//!CALCULATE TIME BETWEEN DATES
+function calcTimeBetweenDates() {
+  if (endCheckBox.checked) {
   }
 }
 
