@@ -3,6 +3,7 @@
 //GET CURRENT DATE AND DAYS OF MONTH
 //Create object date , get current full date
 const date = new Date();
+let day = date.getDate();
 //Get current month
 let month = date.getMonth();
 //get current year
@@ -121,7 +122,6 @@ const fieldsetEndDate = document.getElementById("endDateContainer");
 const reminderContainer = document.getElementById("remainderContainer");
 //add event to the checkbox
 endCheckBox.addEventListener("change", () => {
-  calcTimeBetweenDates();
   togleClases(fieldsetEndDate, "hide__element", "show__element");
 });
 remainderCheckbox.addEventListener("change", () => {
@@ -139,7 +139,7 @@ const reminderTime = getSelectedOption("remainderTime");
 const initialTime = document.getElementById("initialTime");
 const endTime = document.getElementById("endTime");
 const initialErrorMsg = document.getElementById("initialDateErrorMsg");
-const endErrorMsg = document.getElementById("initialDateErrorMsg");
+const endErrorMsg = document.getElementById("endDateErrorMsg");
 
 //Get save btn and do the event
 const saveBtn = document.getElementById("saveBtn");
@@ -158,6 +158,9 @@ saveBtn.addEventListener("click", (e) => {
   if (titleValue && initialDateValue && descriptionValue && !endDateValue) {
     storeLocalStorage();
     printDaysCalendar();
+    if (endCheckBox.checked) {
+      calcTimeBetweenDates(initialDate.value, endDate.value);
+    }
     closeModal();
   } else {
   }
@@ -177,34 +180,36 @@ function checkTitle(title) {
 function checkDate(date) {
   //Convert the date data in to an array.
   const arrayDate = date.split("-");
-  if (
-    date.length === 0 ||
-    new Date(arrayDate[0], arrayDate[1], arrayDate[2]) > new Date()
-  ) {
-    console.log("initial");
-    togleClases(initialErrorMsg, "hide__element", "show__element");
+  let compareDate =
+    new Date(arrayDate[0], arrayDate[1], arrayDate[2]).getTime() <
+    new Date(year, month + 1, day).getTime();
+  if (date.length === 0 || compareDate) {
+    initialErrorMsg.classList.remove("hide__element");
+    initialErrorMsg.classList.add("show__element");
     return false;
   }
   //Check the current day and compare to the current date.
   else {
-    togleClases(initialErrorMsg, "hide__element", "show__element");
+    initialErrorMsg.classList.add("hide__element");
+    initialErrorMsg.classList.remove("show__element");
     return true;
   }
 }
 function checkEndDate(date) {
   //Convert the date data in to an array.
   const arrayDate = date.split("-");
-  if (
-    date.length === 0 ||
-    new Date(arrayDate[0], arrayDate[1], arrayDate[2]) > new Date()
-  ) {
-    console.log("end");
-    togleClases(endErrorMsg, "hide__element", "show__element");
+  let compareDate =
+    new Date(arrayDate[0], arrayDate[1], arrayDate[2]).getTime() <
+    new Date(year, month + 1, day).getTime();
+  if (date.length === 0 || compareDate) {
+    endErrorMsg.classList.remove("hide__element");
+    endErrorMsg.classList.add("show__element");
     return true;
   }
   //Check the current day and compare to the current date.
   else {
-    togleClases(endErrorMsg, "hide__element", "show__element");
+    endErrorMsg.classList.add("hide__element");
+    endErrorMsg.classList.remove("show__element");
     return false;
   }
 }
@@ -221,9 +226,17 @@ function checkDescription(description) {
 }
 
 //!CALCULATE TIME BETWEEN DATES
-function calcTimeBetweenDates() {
-  if (endCheckBox.checked) {
-  }
+function calcTimeBetweenDates(initialDate, endDate) {
+  const arrayInitialDate = initialDate.split("-");
+  const arrayEndDate = endDate.split("-");
+  let timeBetween =
+    new Date(arrayEndDate[0], arrayEndDate[1], arrayEndDate[2]).getTime() -
+    new Date(
+      arrayInitialDate[0],
+      arrayInitialDate[1],
+      arrayInitialDate[2]
+    ).getTime();
+  let daysBetween = timeBetween / (1000 * 3600 * 24);
 }
 
 //!CLASS TO CREATE OBJECTS
@@ -363,7 +376,17 @@ function resetValuesForm(e) {
   const input = modalContainer.querySelectorAll("input");
   modalContainer.querySelector("textarea").value = "";
   for (const elem of input) {
-    elem.value = "";
+    if (elem.type !== "checkbox") {
+      elem.value = "";
+    } else if (elem.checked) {
+      elem.checked = false;
+    }
+  }
+  if (fieldsetEndDate.classList.contains("show__element")) {
+    togleClases(fieldsetEndDate, "hide__element", "show__element");
+  }
+  if (reminderContainer.classList.contains("show__element")) {
+    togleClases(reminderContainer, "hide__element", "show__element");
   }
 }
 
