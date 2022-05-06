@@ -1,3 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+:root {
+  --blue-primary: rgba(64, 103, 246, 0.89);
+  --blue-secondary: rgba(26, 206, 255, 1);
+  --violet-days: rgba(246, 56, 205, 0.795);
+}
+
+.primary__button {
+  background-color: var(--blue-secondary);
+  border: none;
+  padding: 0.5rem 1rem;
+  color: white;
+  border-radius: 5px;
+}
+
+.secondary__button {
+  background-color: var(--blue-primary);
+  border: none;
+  padding: 0.3rem 0.5rem;
+  color: white;
+  border-radius: 5px;
+}
 /*!RESET*/
 * {
   margin: 0;
@@ -17,8 +40,10 @@ body {
 .calendar {
   width: 70%;
   height: 100%;
-  background-color: aqua;
+  background-color: var(--blue-secondary);
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  display: flex;
+  flex-direction: column;
 }
 
 /* !CALENDAR HEADER*/
@@ -35,12 +60,19 @@ body {
   display: flex;
   flex-direction: column;
 }
+.header__btn {
+  background-color: aquamarine;
+  border: none;
+  border-radius: 10px;
+}
 
 /* !CALENDAR WEEKS*/
 
 .calendar__weeks {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  color: white;
+  margin-bottom: 1rem;
 }
 
 .calendar__week__item {
@@ -56,11 +88,9 @@ body {
 .calendar__days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  flex: 3;
 }
-.calendar__days-style div {
-  margin-top: 2vh;
-  height: 3.5rem;
-}
+
 .calendar__days div {
   text-align: center;
   list-style: none;
@@ -68,10 +98,28 @@ body {
 }
 
 .calendar__day__item-bloqued {
-  color: rgba(179, 179, 179, 0.795);
+  color: rgb(135, 130, 130);
   text-align: center;
 }
+.calendar__day__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.showEvents {
+  width: 1.2rem;
+  height: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--violet-days);
+  color: white;
+  cursor: pointer;
+
+}
 /*!MODAL TEST STYLES*/
 /*!MODAL FORM*/
 .modal__container {
@@ -87,8 +135,9 @@ body {
 }
 .modal__content {
   position: absolute;
-  background-color: red;
+  background-color: var(--violet-days);
   text-align: center;
+  padding: 2rem;
 }
 .modal__form {
   display: flex;
@@ -101,14 +150,33 @@ body {
 .show__element {
   display: flex;
 }
+.modal__form>* {
+  padding: 0.5rem;
+}
 
+fieldset {
+  border: none;
+}
+
+#closeBtn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.modal__form__btnContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
 /*!CONTAINER SHOW EVENTS TITLE*/
 .event__container__title {
   position: absolute;
   width: 80%;
   height: 80%;
   margin: 0 auto;
-  background-color: violet;
+  background-color: rgb(213, 105, 213);
+  border-radius: 10px;
   flex-direction: column;
   /* TODO: SCROLL MORE EVENTS */
 }
@@ -118,6 +186,9 @@ body {
   background-color: aliceblue;
   margin: 1rem;
   cursor: pointer;
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 1rem;
 }
 /*!Events info*/
 .events__info{
@@ -126,7 +197,42 @@ body {
   width: 40%;
   height: 40%;
   margin: 0 auto;
-  background-color: blue;
+  background-color: var(--blue-primary);
   flex-direction: column;
-
+  }
+  
+  .event__info__Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    }
+    
+    .events__info-text {
+      text-transform: uppercase;
+      font-size: 0.8rem;
+    }
+    
+    .event__info__Container {
+      padding: 1rem;
+    }
+    
+    .events__info>button {
+      position: absolute;
+      right: 1rem;
+      top: 0.5rem;
+      background-color: rgb(254, 91, 91);
+      color: white;
+      width: 1.4rem;
+      height: 1.4rem;
+      border: none;
+      border-radius: 50%;
+    }
+  
+  .delete__event {
+    background-color: rgb(254, 91, 91);
+    border: none;
+    padding: 0.3rem 0;
+    border-radius: 5px;
 }

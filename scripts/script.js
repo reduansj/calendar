@@ -413,7 +413,7 @@ function addEventsToCalendar(key, element) {
   if (dayData !== null) {
     //22-02-03 = e.title ,e.description...
     const eventTitle = document.createElement("button");
-    eventTitle.textContent = "SHOW EVENT";
+    eventTitle.textContent = "+";
     eventTitle.className = "showEvents";
     eventTitle.dataset.dateBtn = element.dataset.date;
     element.appendChild(eventTitle);
@@ -489,7 +489,8 @@ function showEventData(event, eventId) {
   }
   //Create button for removing the content in local storge
   const deleteBtn = document.createElement("button");
-  deleteBtn.textContent = "deleteEvent";
+  deleteBtn.textContent = "Delete";
+  deleteBtn.className = "delete__event";
   eventInfoContainer.appendChild(deleteBtn);
   eventInfo.appendChild(eventInfoContainer);
   //Event for removing values in local storage
